@@ -1,0 +1,47 @@
+/*
+ * ReStride insole: 2 buses on AIN4 (P1.11) / AIN5 (P1.12) + VDD channel, 3-bit mux address.
+ * VERIFY against the installed SDK: zephyr/include/zephyr/dt-bindings/adc/nrf-saadc*.h
+ * (macro names NRF_SAADC_AIN4 / AIN5 / NRF_SAADC_VDD) and the SAADC chapter (gain / reference).
+ */
+#include <zephyr/dt-bindings/adc/adc.h>
+#include <zephyr/dt-bindings/adc/nrf-saadc.h>
+
+/ {
+	zephyr,user {
+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>;
+		mux-addr-gpios = <&gpio2 6 GPIO_ACTIVE_HIGH>,   /* A0 */
+				 <&gpio2 8 GPIO_ACTIVE_HIGH>,   /* A1 */
+				 <&gpio2 10 GPIO_ACTIVE_HIGH>;  /* A2 */
+	};
+};
+
+&adc {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	channel@0 { /* BUS_A, AIN4 = P1.11 */
+		reg = <0>;
+		zephyr,gain = "ADC_GAIN_1_4";   /* 0.9 V ref x 4 = 3.6 V full scale (>= 3.3 V VDD) */
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS, 10)>;
+		zephyr,input-positive = <NRF_SAADC_AIN4>;
+		zephyr,resolution = <12>;
+	};
+	channel@1 { /* BUS_B, AIN5 = P1.12 */
+		reg = <1>;
+		zephyr,gain = "ADC_GAIN_1_4";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS, 10)>;
+		zephyr,input-positive = <NRF_SAADC_AIN5>;
+		zephyr,resolution = <12>;
+	};
+	channel@2 { /* VDD, for ratiometric correction */
+		reg = <2>;
+		zephyr,gain = "ADC_GAIN_1_4";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <NRF_SAADC_VDD>;
+		zephyr,resolution = <12>;
+	};
+};

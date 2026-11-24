@@ -1,0 +1,34 @@
+mainmenu "ReStride insole heatmap"
+
+config RESTRIDE_FRAME_PERIOD_MS
+	int "Frame period (ms)"
+	default 20
+	range 5 1000
+	help
+	  20 = 50 Hz. At 115200 baud a frame is ~110 bytes, so ~100 Hz is the limit; use
+	  1 Mbaud (set current-speed of uart20 in the overlay) for more.
+
+config RESTRIDE_MUX_SETTLE_US
+	int "Delay after changing the mux address before sampling (us)"
+	default 50
+	range 0 5000
+
+config RESTRIDE_OVERSAMPLING
+	int "SAADC oversampling exponent (0 = off, 2 = 4x)"
+	default 2
+	range 0 8
+
+config RESTRIDE_FW_VERSION
+	string "Firmware version string reported in the I line"
+	default "0.1.0"
+
+config RESTRIDE_RREF_OHMS
+	int "Bus pull-down value reported to the host (ohms)"
+	default 10000
+
+config RESTRIDE_MUX_SELFTEST
+	bool "Mux self-test: hold each address 2 s and print k (no ADC scan)"
+	help
+	  Check with a meter that exactly one SELk line is high at a time.
+
+source "Kconfig.zephyr"

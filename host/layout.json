@@ -1,0 +1,26 @@
+{
+  "_comment": "Keyed by FPC pin. ch = firmware channel index (frame field rN). x: 0 medial .. 1 lateral, y: 0 heel .. 1 toe. Right insole. Use --left to mirror x. Edit freely.",
+  "sensors": {
+    "2":  {"ch": 0,  "region": "Medial midfoot / arch (front)",       "x": 0.29, "y": 0.48},
+    "3":  {"ch": 1,  "region": "Medial heel-midfoot",                "x": 0.37, "y": 0.33},
+    "4":  {"ch": 2,  "region": "Heel lateral",                       "x": 0.76, "y": 0.15},
+    "5":  {"ch": 3,  "region": "Heel medial",                        "x": 0.46, "y": 0.15},
+    "7":  {"ch": 4,  "region": "MT1 head (medial forefoot)",         "x": 0.23, "y": 0.62},
+    "8":  {"ch": 5,  "region": "Hallux base / medial forefoot",      "x": 0.17, "y": 0.75},
+    "9":  {"ch": 6,  "region": "Hallux (big toe)",                   "x": 0.17, "y": 0.88},
+    "10": {"ch": 7,  "region": "Lesser toes",                        "x": 0.51, "y": 0.90},
+    "12": {"ch": 8,  "region": "MT2-3 heads",                        "x": 0.44, "y": 0.76},
+    "13": {"ch": 9,  "region": "Central heel-midfoot",               "x": 0.58, "y": 0.33},
+    "15": {"ch": 10, "region": "Central midfoot",                    "x": 0.54, "y": 0.48},
+    "16": {"ch": 11, "region": "Central forefoot",                   "x": 0.52, "y": 0.62},
+    "17": {"ch": 12, "region": "Lateral heel-midfoot",               "x": 0.77, "y": 0.33},
+    "18": {"ch": 13, "region": "Lateral midfoot",                    "x": 0.81, "y": 0.48},
+    "19": {"ch": 14, "region": "Lateral midfoot (front) / MT5 base", "x": 0.82, "y": 0.63},
+    "20": {"ch": 15, "region": "MT4-5 heads",                        "x": 0.74, "y": 0.77}
+  },
+  "outline": [
+    [0.58, 0.00], [0.36, 0.03], [0.30, 0.08], [0.27, 0.25], [0.22, 0.39], [0.12, 0.57], [0.03, 0.76],
+    [0.01, 0.89], [0.08, 0.98], [0.28, 1.00], [0.50, 0.98], [0.67, 0.92], [0.84, 0.80], [0.98, 0.62],
+    [0.97, 0.48], [0.92, 0.30], [0.91, 0.12], [0.83, 0.03], [0.72, 0.00]
+  ]
+}
